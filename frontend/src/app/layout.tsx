@@ -1,9 +1,9 @@
-// RootLayout.tsx
 import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 import React from "react";
 import Sidebar from "@/components/common/Sidebar";
+import NavBar from "@/components/common/NavBar";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description: "Bug management system",
 };
 
+
 export default function RootLayout({
                                        children,
                                    }: Readonly<{
@@ -28,7 +29,13 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Sidebar>{children}</Sidebar>
+        <div className="h-screen w-screen flex">
+            <Sidebar/>
+            <div className="flex-1 h-full overflow-y-auto">
+                <NavBar/>
+                {children}
+            </div>
+        </div>
         </body>
         </html>
     );
